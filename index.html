@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<title>WILLY Meme Maker – $WILLYi</title>
+	
+	<!-- Keep only essential meta tags and links -->
+	<meta name="robots" content="max-image-preview:large">
+	<link rel="icon" href="https://michisolana.org/wp-content/uploads/2024/04/LOGO-sm.png">
+	
+	<!-- Simplified CSS -->
+	<style>
+		body, html {
+			padding: 0;
+			margin: 0;
+			min-height: 100vh;
+			background-color: #FBECCF;
+		}
+
+		#container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 10px;
+		}
+
+		iframe {
+			width: 100%;
+			border: none;
+		}
+
+		.logo-container {
+			text-align: center;
+			padding: 20px;
+		}
+
+		.logo-container img {
+			max-width: 200px;
+		}
+
+		.title {
+			text-align: center;
+			font-size: 2em;
+			margin: 10px 0;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="logo-container">
+		<img src="https://willysolana.org/wp-content/uploads/2024/04/LOGO-sm.png" alt="WILLY Logo">
+		<h1 class="title">WILLY</h1>
+	</div>
+
+	<div id="container">
+		<iframe id="meme-generator" src="https://michimaker.vercel.app/" frameborder="0" scrolling="no"></iframe>
+	</div>
+
+	<script>
+		window.addEventListener('message', function(event) {
+			if (event.origin !== "https://michimaker.vercel.app") {
+				console.log('Message from untrusted origin:', event.origin);
+				return;
+			}
+
+			if (event.data.frameId === 'meme-generator') {
+				const iframe = document.getElementById('meme-generator');
+				if (iframe) {
+					iframe.style.height = event.data.frameHeight + 'px';
+				}
+			}
+		});
+	</script>
+</body>
+</html>
